@@ -18,7 +18,7 @@ export const App = () => {
             />
 
             <Route
-              path="/home"
+              path="*"
               element={(
                 <Navigate
                   to="/"
