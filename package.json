@@ -1,13 +1,15 @@
 {
   "name": "pokemon",
-  "homepage": ".",
+  "homepage": "https://sapnachoudhary06.github.io/pokemon",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
-    "build": "NODE_ENV=production webpack",
-    "test": "react-scripts test"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "Sapna Kumari Choudhary",
