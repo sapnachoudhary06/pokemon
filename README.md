@@ -54,7 +54,7 @@ Javascript, TypeScript, HTML, CSS, React, Jest, React Router and hooks.
   - if searched by name, the input search field for move and ability is disabled.
     -- a request is made through API [GET https://pokeapi.co/api/v2/pokemon/{id or name}/]
   - if searched by move, the input search field for name and ability is disabled.
-    -- a request is made through API []
+    -- a request is made through API [GET https://pokeapi.co/api/v2/move/{id or name}/]
     -- a list of pokemons tthat can learn the move is displayed from the "learned_by_pokemon" field in the result of the above API call
   - if searched by ability, the input search field for move and name is disabled.
     -- a request is made through API [GET https://pokeapi.co/api/v2/ability/{id or name}/]
