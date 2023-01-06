@@ -1,4 +1,4 @@
-import { ApiParam } from "./components/types/ApiParam";
+import { ApiParam } from "./types/ApiParam";
 
 const API_URL = 'https://pokeapi.co/api/v2/';
 

@@ -1,11 +1,15 @@
-import React from "react";
-import { NamedAPIResource } from "../types/Pokemon";
+import classNames from "classnames";
+import React, { useState } from "react";
+import { PokemonFetch } from "../PokemonFetch";
+import { NamedAPIResource } from "../../types/Pokemon";
 
 interface Props {
   resourceList: NamedAPIResource[],
 }
 
 export const PokemonList: React.FC<Props> = ({ resourceList }) => {
+  const [selectedResource, setSelectedResource] = useState<NamedAPIResource | null>(null);
+
   return (
     <>
       <ul
@@ -16,10 +20,30 @@ export const PokemonList: React.FC<Props> = ({ resourceList }) => {
             className="title is-4"
             key={idx}
           >
-            <a>{resource.name}</a>
+            <a
+              onClick={() => setSelectedResource(resource)}
+            >
+              {resource.name}
+            </a>
           </li>
         ))}
       </ul>
+
+      {selectedResource && (
+        <div
+          className={classNames(
+            'modal',
+            {
+              'is-active': selectedResource,
+            }
+          )}
+        >
+          <PokemonFetch
+            selectedResource={selectedResource}
+            onSelectResource={setSelectedResource}
+          />
+        </div>
+      )}
     </>
   );
 };

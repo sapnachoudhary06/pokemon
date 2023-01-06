@@ -2,8 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { get } from "../../api";
 import { Loader } from "../Loader";
 import { PokemonList } from "../PokemonList";
-import { ApiParam } from "../types/ApiParam";
-import { NamedAPIResource, NamedAPIResourceList } from "../types/Pokemon";
+import { ApiParam } from "../../types/ApiParam";
+import { NamedAPIResource, NamedAPIResourceList } from "../../types/Pokemon";
 
 export const PokemonsPage = () => {
   const [resourceList, setResourceList] = useState<NamedAPIResource[]>([]);

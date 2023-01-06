@@ -17,7 +17,7 @@ export const Navbar = () => (
               },
             )
           )}
-          to={"/"}
+          to="/"
         >
           Home
         </NavLink>
@@ -31,7 +31,7 @@ export const Navbar = () => (
               },
             )
           )}
-          to={"/pokemons"}
+          to="/pokemons"
         >
           Pokemons
         </NavLink>
@@ -45,7 +45,7 @@ export const Navbar = () => (
               },
             )
           )}
-          to={"/search"}
+          to="/search"
         >
           Search
         </NavLink>
