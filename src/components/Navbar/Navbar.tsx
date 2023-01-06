@@ -18,6 +18,7 @@ export const Navbar = () => (
             )
           )}
           to="/"
+          id="home"
         >
           Home
         </NavLink>
@@ -32,6 +33,7 @@ export const Navbar = () => (
             )
           )}
           to="/pokemons"
+          id="pokemons"
         >
           Pokemons
         </NavLink>
@@ -46,6 +48,7 @@ export const Navbar = () => (
             )
           )}
           to="/search"
+          id="search"
         >
           Search
         </NavLink>
