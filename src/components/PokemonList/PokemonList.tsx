@@ -39,7 +39,7 @@ export const PokemonList: React.FC<Props> = ({ resourceList }) => {
           )}
         >
           <PokemonFetch
-            selectedResource={selectedResource}
+            resource={selectedResource}
             onSelectResource={setSelectedResource}
           />
         </div>

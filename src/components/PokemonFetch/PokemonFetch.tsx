@@ -1,75 +1,97 @@
-import classNames from "classnames";
-import React, { useCallback, useEffect, useState } from "react";
+import classNames from 'classnames';
+import React, { useCallback, useEffect, useState } from 'react';
 import { get } from "../../api";
-import { Loader } from "../Loader";
 import { NamedAPIResource, PokemonType } from "../../types/Pokemon";
+import { Loader } from "../Loader";
+import { PokemonInfo } from "../PokemonInfo";
 
 interface Props {
-  selectedResource: NamedAPIResource,
-  onSelectResource: (resource: NamedAPIResource | null) => void,
+  resource: NamedAPIResource,
+  onSelectResource: (val: null) => void,
 }
 
 export const PokemonFetch: React.FC<Props> = ({
-  selectedResource,
+  resource,
   onSelectResource,
- }) => {
+}) => {
+  const [isPokemonLoading, setIsPokemonLoading] = useState(false);
+  const [errorLoadingPokemon, setErrorLoadingPokemon] = useState(false);
   const [pokemon, setPokemon] = useState<PokemonType | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
 
   const fetchPokemon = useCallback(async (url: string) => {
     try {
-      setIsLoading(true);
-      setIsError(false);
-      const fetchedPokemon = await get<PokemonType>({ url });
-      setPokemon(fetchedPokemon);
+      setIsPokemonLoading(true);
+      setErrorLoadingPokemon(false);
+      const fetchedData = await get<PokemonType>({ url });
+
+      setPokemon(fetchedData);
     } catch (error) {
-      setIsError(true);
+      setErrorLoadingPokemon(true);
     }
-    setIsLoading(false);
+
+    setIsPokemonLoading(false);
   }, []);
 
   useEffect(() => {
-    fetchPokemon(selectedResource.url);
-  }, [selectedResource]);
+    fetchPokemon(resource.url);
+  }, [resource]);
 
   return (
     <>
       <div
         className={classNames(
           'modal-background',
+          {
+            'is-hidden': pokemon,
+          },
         )}
         onClick={() => onSelectResource(null)}
       />
 
-      <div className="modal-card">
-          <header className="modal-card-haed">
-            <p className="modal-card-title">{selectedResource.name}</p>
-            <button
-              className="delete"
-              onClick={() => onSelectResource(null)}
-            />
-          </header>
-          <section className="modal-card-body">
-            {isLoading && (
-              <Loader />
-            )}
+      <div
+        className={classNames(
+          'modal-card',
+          {
+            'is-hidden': pokemon,
+          }
+        )}
+      >
+        <header className="modal-card-head">
+          <p className="modal-card-title">
+            {resource.name}
+          </p>
 
-            {isError && (
-              <div
-                className="notification is-danger"
-              >
-                Something went wrong
-              </div>
-            )}
+          <button
+            className="delete"
+            onClick={() => onSelectResource(null)}
+          />
+        </header>
 
-            {!isLoading && !isError && !pokemon && (
-              <p className="title is-4">
-                No Pokemon found.
-              </p>
-            )}
-          </section>
+        <section className="modal-card-body">
+          {isPokemonLoading && (
+            <Loader />
+          )}
+
+          {errorLoadingPokemon && (
+            <div className="notification is-danger">
+              Something went wrong
+            </div>
+          )}
+
+          {!isPokemonLoading && !errorLoadingPokemon && !pokemon && (
+            <p className="title is-4">
+              No Pokemon Found
+            </p>
+          )}
+        </section>
       </div>
+
+      {pokemon && (
+        <PokemonInfo
+          pokemon={pokemon}
+          onCloseModal={() => onSelectResource(null)}
+        />
+      )}
     </>
   );
 };
