@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 import React, { useCallback, useEffect, useState } from 'react';
 import { get } from "../../api";
-import { NamedAPIResource, PokemonType } from "../../types/Pokemon";
+import { NamedAPIResourceType, PokemonType } from "../../types/Pokemon";
 import { Loader } from "../Loader";
 import { PokemonInfo } from "../PokemonInfo";
 
 interface Props {
-  resource: NamedAPIResource,
+  resource: NamedAPIResourceType,
   onSelectResource: (val: null) => void,
 }
 
@@ -74,7 +74,7 @@ export const PokemonFetch: React.FC<Props> = ({
 
           {errorLoadingPokemon && (
             <div className="notification is-danger">
-              Something went wrong
+              Something went wrong, try again !!
             </div>
           )}
 

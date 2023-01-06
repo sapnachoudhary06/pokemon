@@ -1,14 +1,14 @@
 import classNames from "classnames";
 import React, { useState } from "react";
 import { PokemonFetch } from "../PokemonFetch";
-import { NamedAPIResource } from "../../types/Pokemon";
+import { NamedAPIResourceType } from "../../types/Pokemon";
 
 interface Props {
-  resourceList: NamedAPIResource[],
+  resourceList: NamedAPIResourceType[],
 }
 
 export const PokemonList: React.FC<Props> = ({ resourceList }) => {
-  const [selectedResource, setSelectedResource] = useState<NamedAPIResource | null>(null);
+  const [selectedResource, setSelectedResource] = useState<NamedAPIResourceType | null>(null);
 
   return (
     <>

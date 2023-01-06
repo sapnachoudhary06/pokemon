@@ -1,23 +1,24 @@
-export interface NamedAPIResource {
+export interface NamedAPIResourceType {
   name: string,
   url: string,
 }
 
-export interface NamedAPIResourceList {
+export interface NamedAPIResourceListType {
   count: number,
   next: string,
   previous: string,
-  results: NamedAPIResource[],
+  results: NamedAPIResourceType[],
 }
+
 export interface PokemonAbilityType {
-  ability: NamedAPIResource,
+  ability: NamedAPIResourceType,
 }
 
 export interface PokemonMoveType {
-  move: NamedAPIResource,
+  move: NamedAPIResourceType,
 }
 
-export interface Sprite {
+export interface SpriteType {
   back_default: string,
   back_female: string,
   back_shiny: string,
@@ -32,5 +33,17 @@ export interface PokemonType {
   name: string,
   abilities: PokemonAbilityType[],
   moves: PokemonMoveType[],
-  sprites: Sprite,
+  sprites: SpriteType,
+}
+
+export interface PokemonWithAbilityType {
+  pokemon: NamedAPIResourceType,
+}
+
+export interface AbilityType {
+  pokemon: PokemonWithAbilityType[],
+}
+
+export interface MoveType {
+  learned_by_pokemon: NamedAPIResourceType[],
 }

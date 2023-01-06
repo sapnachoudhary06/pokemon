@@ -3,10 +3,10 @@ import { get } from "../../api";
 import { Loader } from "../Loader";
 import { PokemonList } from "../PokemonList";
 import { ApiParam } from "../../types/ApiParam";
-import { NamedAPIResource, NamedAPIResourceList } from "../../types/Pokemon";
+import { NamedAPIResourceType, NamedAPIResourceListType } from "../../types/Pokemon";
 
 export const PokemonsPage = () => {
-  const [resourceList, setResourceList] = useState<NamedAPIResource[]>([]);
+  const [resourceList, setResourceList] = useState<NamedAPIResourceType[]>([]);
   const [next, setNext] = useState('');
   const [previous, setPrevious] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ export const PokemonsPage = () => {
     setIsLoading(true);
     setIsError(false);
     try {
-      const fetchedResources = await get<NamedAPIResourceList>(param)
+      const fetchedResources = await get<NamedAPIResourceListType>(param)
       setResourceList(fetchedResources.results);
       setNext(fetchedResources.next);
       setPrevious(fetchedResources.previous);
@@ -58,8 +58,8 @@ export const PokemonsPage = () => {
           )}
 
           {isError && (
-            <p className="has-text-danger">
-              Something went wrong, try again !
+            <p className="notification is-danger">
+              Something went wrong, try again !!
             </p>
           )}
 
